@@ -3,6 +3,7 @@ package com.fancv;
 import com.fancv.scan.Car;
 import com.fancv.scan.MyCar;
 import com.fancv.spring.HelloWorld;
+import com.fancv.spring.House;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -27,7 +28,16 @@ public class MainApp {
         ApplicationContext context2 =
                 new ClassPathXmlApplicationContext("SpringBeans.xml");
         HelloWorld obj2 = (HelloWorld) context2.getBean("helloWorld");
+
+
+
+
         obj2.getMessage();
         System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(context.getStartupDate()));
+
+
+
+        House obj4 = (House) context2.getBean("hourse");
+        System.out.println(obj4.getName()+obj4.getClour());
     }
 }

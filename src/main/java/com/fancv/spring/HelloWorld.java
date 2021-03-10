@@ -34,5 +34,10 @@ public class HelloWorld {
 
     public void getMessage() {
         System.out.println("Your Message : " + message);
+
     }
+    public String getMessage1() {
+        return this.message;
+    }
+
 }

@@ -12,4 +12,9 @@ public class Car {
     public void driver() {
         System.out.println(this.name);
     }
+
+    public void Mydriver(String name) {
+        System.out.println(this.name);
+
+    }
 }
