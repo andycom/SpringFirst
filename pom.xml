@@ -12,6 +12,13 @@
             <artifactId>spring-context</artifactId>
             <version>5.3.4</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>5.3.4</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -28,5 +35,48 @@
                 </configuration>
             </plugin>
         </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <db.driver>com.mysql.jdbc.Driver</db.driver>
+                <db.url>jdbc:mysql://localhost:3306/test</db.url>
+                <db.username>root</db.username>
+                <db.password>root</db.password>
+                <activatedProperties>dev</activatedProperties>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <db.driver>com.mysql.jdbc.Driver</db.driver>
+                <db.url>jdbc:mysql://localhost:3306/test_db</db.url>
+                <db.username>root</db.username>
+                <db.password>root</db.password>
+                <activatedProperties>test</activatedProperties>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>prd</id>
+            <properties>
+                <db.driver>com.mysql.jdbc.Driver</db.driver>
+                <db.url>jdbc:mysql://localhost:3306/test_db</db.url>
+                <db.username>root</db.username>
+                <db.password>root</db.password>
+                <activatedProperties>prd</activatedProperties>
+            </properties>
+        </profile>
+    </profiles>
 </project>
