@@ -6,8 +6,10 @@ import com.fancv.spring.HelloWorld;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.core.env.Environment;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -16,6 +18,9 @@ public class MainApp {
          */
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("SpringBeans.xml");
+
+        Environment environment= context.getEnvironment();
+        System.out.println(Arrays.toString(environment.getActiveProfiles()));
         /**
          * 可以修改 ConfigurableEnvironment
          */
