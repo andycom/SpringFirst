@@ -1,8 +1,11 @@
 package com.fancv;
 
 import com.fancv.DTO.Computer;
+import com.fancv.aop.Chinese;
+import com.fancv.aop.UserValidator;
 import com.fancv.scan.Car;
 import com.fancv.scan.MyCar;
+import com.fancv.scan.MyPerson;
 import com.fancv.scan.Person;
 import com.fancv.spring.HelloWorld;
 import org.springframework.context.ApplicationContext;
@@ -23,12 +26,17 @@ public class MainApp {
 
         Environment environment = context.getEnvironment();
         System.out.println(Arrays.toString(environment.getActiveProfiles()));
+        Chinese lilei = (Chinese)context.getBean("lilei");
+        lilei.Say();
 
 
-        Person person = (Person) context.getBean("person");
-        person.print();
+
+        MyPerson person = (MyPerson) context.getBean("person");
+        person.st();
         Computer c = new Computer("level", 12, true);
-        person.watch("testAGe", c);
+        UserValidator u=(UserValidator)context.getBean("doSomething");
+        u.validate(c);
+       /* person.watch("testAGe", c);*/
         /**
          * 可以修改 ConfigurableEnvironment
          */

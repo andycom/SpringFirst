@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class Person {
+public class Person implements MyPerson{
 
 
     private String name="123";
@@ -31,5 +31,10 @@ public class Person {
         System.out.println("传入参数"+s);
         System.out.println(computer.getAge());
         return computer;
+    }
+
+    @Override
+    public void st() {
+        System.out.println("实现接口");
     }
 }

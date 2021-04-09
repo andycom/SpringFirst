@@ -26,6 +26,7 @@ public class Monitor implements Advice {
     }
 
     public void finish(JoinPoint joinPoint, Computer computer) {
+        joinPoint.getArgs();
         System.out.println(computer.toString());
         System.out.println("4.finish");
     }

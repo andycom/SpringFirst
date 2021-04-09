@@ -42,20 +42,25 @@
     <bean id="monitor" class="com.fancv.aop.Monitor">
 
     </bean>
-
+    <bean id="lilei" class="com.fancv.aop.LiLei"/>
+    <bean id="doSomething" class="com.fancv.aop.UserValidatorImpl"/>
     <bean id="xmlAudienceAround" class="com.fancv.aop.XmlAudienceAround"></bean>
     <Context:component-scan base-package="com.fancv.scan"/>
     <Context:property-placeholder location="myConfig1.properties,myConfig.properties"/>
 
     <aop:config>
         <aop:aspect id="aspects" ref="monitor">
+            <aop:declare-parents types-matching="com.fancv.aop.LiLei"
+                                 implement-interface="com.fancv.aop.UserValidator" default-impl="com.fancv.aop.UserValidatorImpl"></aop:declare-parents>
             <aop:pointcut id="pointCutAfterReturning" expression=
                     "execution(* com.fancv.scan.Person.watch(..))"/>
             <aop:after-returning method="all" pointcut-ref="pointCutAfterReturning"/>
             <!--  <aop:around method="finish" pointcut-ref="pointCutAfterReturning"/>-->
             <aop:before method="take" pointcut-ref="pointCutAfterReturning"/>
-            <aop:after-returning method="finish" pointcut-ref="pointCutAfterReturning" returning = "computer"/>
+            <aop:after-returning method="finish" pointcut-ref="pointCutAfterReturning" returning="computer"/>
         </aop:aspect>
+
+
         <aop:aspect ref="xmlAudienceAround">
             <aop:pointcut id="pt1" expression="execution(* com.fancv.scan.Person.watch(..))"/>
             <aop:around method="aroundPringLog" pointcut-ref="pt1"/>
