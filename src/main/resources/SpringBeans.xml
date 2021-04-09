@@ -48,7 +48,7 @@
     <Context:component-scan base-package="com.fancv.scan"/>
     <Context:property-placeholder location="myConfig1.properties,myConfig.properties"/>
 
-    <aop:config>
+    <aop:config proxy-target-class="true">
         <aop:aspect id="aspects" ref="monitor">
             <aop:declare-parents types-matching="com.fancv.aop.LiLei"
                                  implement-interface="com.fancv.aop.UserValidator" default-impl="com.fancv.aop.UserValidatorImpl"></aop:declare-parents>

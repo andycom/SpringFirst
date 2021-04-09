@@ -34,7 +34,7 @@ public class MainApp {
         MyPerson person = (MyPerson) context.getBean("person");
         person.st();
         Computer c = new Computer("level", 12, true);
-        UserValidator u=(UserValidator)context.getBean("doSomething");
+        UserValidator u=(UserValidator)context.getBean("lilei");
         u.validate(c);
        /* person.watch("testAGe", c);*/
         /**
