@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:Context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
     <bean id="helloWorld" class="com.fancv.spring.HelloWorld">
@@ -16,9 +17,11 @@
 
     <bean id="hourse" class="com.fancv.spring.House">
         <constructor-arg index="0" value="${name:'sd'}"/>
-        <constructor-arg index="1" value="#{person2.getMessage1()?: 'dsdf'}"/>
+        <constructor-arg index="1" value="#{person3.getMessage1()?: 'dsdf'}"/>
 
     </bean>
+
+
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <array>
@@ -36,8 +39,29 @@
         </property>
 
     </bean>
+    <bean id="monitor" class="com.fancv.aop.Monitor">
+
+    </bean>
+
+    <bean id="xmlAudienceAround" class="com.fancv.aop.XmlAudienceAround"></bean>
     <Context:component-scan base-package="com.fancv.scan"/>
     <Context:property-placeholder location="myConfig1.properties,myConfig.properties"/>
+
+    <aop:config>
+        <aop:aspect id="aspects" ref="monitor">
+            <aop:pointcut id="pointCutAfterReturning" expression=
+                    "execution(* com.fancv.scan.Person.watch(..))"/>
+            <aop:after-returning method="all" pointcut-ref="pointCutAfterReturning"/>
+            <!--  <aop:around method="finish" pointcut-ref="pointCutAfterReturning"/>-->
+            <aop:before method="take" pointcut-ref="pointCutAfterReturning"/>
+            <aop:after-returning method="finish" pointcut-ref="pointCutAfterReturning" returning = "computer"/>
+        </aop:aspect>
+        <aop:aspect ref="xmlAudienceAround">
+            <aop:pointcut id="pt1" expression="execution(* com.fancv.scan.Person.watch(..))"/>
+            <aop:around method="aroundPringLog" pointcut-ref="pt1"/>
+        </aop:aspect>
+
+    </aop:config>
     <beans profile="prd">
         <bean id="person2" class="com.fancv.spring.HelloWorld">
             <constructor-arg index="0" value="lisi"/>
@@ -45,8 +69,6 @@
         </bean>
 
     </beans>
-
-
 
 
 </beans>

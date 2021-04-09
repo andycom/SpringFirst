@@ -19,6 +19,13 @@
             <version>5.3.4</version>
         </dependency>
 
+        <!--支持切入点表达式  -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.9.1</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -46,9 +53,7 @@
     <profiles>
         <profile>
             <id>dev</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
+
             <properties>
                 <db.driver>com.mysql.jdbc.Driver</db.driver>
                 <db.url>jdbc:mysql://localhost:3306/test</db.url>
@@ -70,6 +75,9 @@
 
         <profile>
             <id>prd</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <db.driver>com.mysql.jdbc.Driver</db.driver>
                 <db.url>jdbc:mysql://localhost:3306/test_db</db.url>

@@ -1,7 +1,9 @@
 package com.fancv;
 
+import com.fancv.DTO.Computer;
 import com.fancv.scan.Car;
 import com.fancv.scan.MyCar;
+import com.fancv.scan.Person;
 import com.fancv.spring.HelloWorld;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -12,15 +14,21 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 public class MainApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         /**
          * ClassPathXmlApplicationContext  不能代码修改environment
          */
         ApplicationContext context =
                 new ClassPathXmlApplicationContext("SpringBeans.xml");
 
-        Environment environment= context.getEnvironment();
+        Environment environment = context.getEnvironment();
         System.out.println(Arrays.toString(environment.getActiveProfiles()));
+
+
+        Person person = (Person) context.getBean("person");
+        person.print();
+        Computer c = new Computer("level", 12, true);
+        person.watch("testAGe", c);
         /**
          * 可以修改 ConfigurableEnvironment
          */
