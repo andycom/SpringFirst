@@ -6,7 +6,6 @@ import com.fancv.aop.UserValidator;
 import com.fancv.scan.Car;
 import com.fancv.scan.MyCar;
 import com.fancv.scan.MyPerson;
-import com.fancv.scan.Person;
 import com.fancv.spring.HelloWorld;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
