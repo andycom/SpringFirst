@@ -5,7 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>groupId</groupId>
     <artifactId>SpringFirst</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>GeekSpring</module>
+    </modules>
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -39,6 +43,11 @@
             <version>1.9.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
 
     </dependencies>
 

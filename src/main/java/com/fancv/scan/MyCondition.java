@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyCondition implements Condition {
 
+    @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
         return true;
     }
