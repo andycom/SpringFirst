@@ -17,7 +17,7 @@
 package org.geekbang.thinking.in.spring.bean.definition;
 
 import org.geekbang.thinking.in.spring.ioc.overview.domain.User;
-import org.springframework.beans.factory.config.BeanDefinition;
+import org.geekbang.thinking.in.spring.ioc.overview.enums.City;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.support.BeanDefinitionReaderUtils;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -26,8 +26,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-
-import java.util.Map;
 
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.genericBeanDefinition;
 
@@ -66,7 +64,8 @@ public class AnnotationBeanDefinitionDemo {
         BeanDefinitionBuilder beanDefinitionBuilder = genericBeanDefinition(User.class);
         beanDefinitionBuilder
                 .addPropertyValue("id", 1L)
-                .addPropertyValue("name", "小马哥");
+                .addPropertyValue("name", "小马哥")
+                .addPropertyValue("city", City.HANGZHOU);
 
         // 判断如果 beanName 参数存在时
         if (StringUtils.hasText(beanName)) {

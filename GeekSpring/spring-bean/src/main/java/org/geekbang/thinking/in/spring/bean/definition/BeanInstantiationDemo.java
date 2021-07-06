@@ -22,7 +22,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Bean 实例化示例
- *
+ * 36讲
  * @author <a href="mailto:mercyblitz@gmail.com">Mercy</a>
  * @since
  */
